@@ -2,6 +2,13 @@
 
 Instructions on how to set up a reverse proxy for one-click-tangle
 
+It serves the following url's
+
+- explorer: this is the tangle explorer, part of the one-click-tangle setup
+- explorer-api: this is the route the tangle explorer will use to fetch information about the currently running node
+- dashboard: this is the dashboard for a running hornet node
+- hornet api: this is the route through which a user can query directly information about a running node
+
 ### Prerequisites
 
 Ensure you have Docker and Docker Compose. Docker Compose is a tool for defining and running multi-container Docker applications. A series YAML files are used to configure the required services. This means all container services can be brought up in a single command. Docker Compose is installed by default as part of Docker for Windows and Docker for Mac, however Linux users will need to follow separate instructions.
