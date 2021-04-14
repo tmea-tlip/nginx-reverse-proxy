@@ -1,0 +1,30 @@
+version: "3"
+
+networks:
+  tangle:
+    name: private-tangle
+
+services:
+  nginx-rproxy-ssl:
+      networks:
+        - tangle
+      image: nginx
+      restart: always
+      container_name: nginx-rproxy-ssl
+      expose:
+        - 443
+        - 80
+      ports:
+        - "443:443"
+        - "80:80"
+      volumes:
+        - ./nginx-conf/nginx.conf:/etc/nginx/nginx.conf
+        - ./nginx-conf/nginx-nodes.conf:/etc/nginx/conf.d/nodes-tlip-io.conf
+        - ./nginx-conf/nginx-explorer.conf:/etc/nginx/conf.d/explorer-tlip-io.conf
+        - ./nginx-conf/nginx-explorer-http.conf:/etc/nginx/conf.d/http-explorer-tlip-io.conf
+        - ./nginx-conf/nginx-explorer-api.conf:/etc/nginx/conf.d/explorer-api-tlip-io.conf
+        - ./nginx-conf/nginx-hornet-dashboard-https.conf:/etc/nginx/conf.d/hornet-dashboard-https-tlip-io.conf
+        - ./nginx-conf/htpasswd:/etc/nginx/htpasswd
+        - ./nginx-conf/nginx-hornet-dashboard.conf:/etc/nginx/conf.d/hornet-dashboard-tlip-io.conf
+        - ./nginx-conf/origin-server.crt:/etc/ssl/tlip.io/origin-server.crt
+        - ./nginx-conf/origin-server.key:/etc/ssl/tlip.io/origin-server.key
